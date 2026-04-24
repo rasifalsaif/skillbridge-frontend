@@ -21,7 +21,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
     return (
         <Link
             href={`/tutors/${tutor.id}`}
-            className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500 group relative overflow-hidden flex flex-col h-full"
+            className="bg-white rounded-[2.5rem] p-8 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-500 group relative overflow-hidden flex flex-col h-full animate-fade-in-up"
         >
             <div className="flex items-start justify-between mb-6 relative z-10">
                 <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center text-2xl font-black text-white">
