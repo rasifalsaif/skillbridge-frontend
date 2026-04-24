@@ -7,11 +7,17 @@ export type Category = {
     name: string;
 };
 
+export enum UserRole {
+    ADMIN = 'ADMIN',
+    TUTOR = 'TUTOR',
+    STUDENT = 'STUDENT'
+}
+
 export type User = {
     id: string;
     name: string;
     email: string;
-    role: string;
+    role: UserRole | string;
     isBanned?: boolean;
     tutorProfile?: TutorProfile;
 };
