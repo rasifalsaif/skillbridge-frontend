@@ -19,8 +19,8 @@ export default function Logo({ size = 'md' }: LogoProps) {
                 <GraduationCap className="text-white" size={icon} />
             </div>
             <span className={`${text} font-black tracking-tight`}>
-                <span className="text-gray-900">Skill</span>
-                <span className="text-blue-600">Bridge</span>
+                <span className="text-gray-900 dark:text-white">Skill</span>
+                <span className="text-blue-600 dark:text-blue-400">Bridge</span>
             </span>
         </Link>
     );
