@@ -27,6 +27,14 @@ export default function Footer() {
                             <li><a href="/privacy" className="hover:text-blue-600">Privacy Policy</a></li>
                         </ul>
                     </div>
+                    <div>
+                        <h4 className="font-semibold text-gray-900 mb-4">Connect</h4>
+                        <ul className="space-y-2 text-sm text-gray-600">
+                            <li><a href="#" className="hover:text-blue-600">Twitter</a></li>
+                            <li><a href="#" className="hover:text-blue-600">LinkedIn</a></li>
+                            <li><a href="#" className="hover:text-blue-600">Facebook</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="mt-12 pt-8 border-t border-gray-100 text-center text-sm text-gray-400">
                     © {new Date().getFullYear()} SkillBridge. All rights reserved.
