@@ -5,9 +5,14 @@ import { TutorProfile } from '../types/intex';
 import { Star, MapPin, ArrowRight } from 'lucide-react';
 
 interface TutorCardProps {
+    /** The tutor profile data to display */
     tutor: TutorProfile;
 }
 
+/**
+ * A card component that displays summary information for a tutor profile.
+ * Includes tutor name, hourly rate, category, bio snippet, and rating.
+ */
 export default function TutorCard({ tutor }: TutorCardProps) {
     const averageRating = tutor.reviews && tutor.reviews.length > 0
         ? (tutor.reviews.reduce((acc, rev) => acc + rev.rating, 0) / tutor.reviews.length).toFixed(1)
