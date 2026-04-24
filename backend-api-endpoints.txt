@@ -1,0 +1,209 @@
+================================================================================
+SKILLBRIDGE BACKEND - API ENDPOINTS
+================================================================================
+
+Base URL: https://your-vercel-domain.vercel.app/api
+
+================================================================================
+AUTHENTICATION ENDPOINTS
+================================================================================
+
+POST /auth/register
+  - Description: Register new user
+  - Auth: Not required
+  - Body: { email, password, name, role }
+
+POST /auth/login
+  - Description: Login user
+  - Auth: Not required
+  - Body: { email, password }
+  - Response: { token, user }
+
+PATCH /auth/change-password
+  - Description: Change password (authenticated users only)
+  - Auth: Required (JWT Token)
+  - Body: { oldPassword, newPassword }
+
+================================================================================
+USER ENDPOINTS
+================================================================================
+
+GET /home/stats
+  - Description: Get home page statistics
+  - Auth: Not required
+  - Response: { totalTutors, totalBookings, totalReviews }
+
+GET /user/profile
+  - Description: Get authenticated user's profile
+  - Auth: Required (JWT Token)
+  - Response: { id, email, name, role, profile }
+
+GET /user/stats
+  - Description: Get authenticated user's statistics
+  - Auth: Required (JWT Token)
+  - Response: { bookings, reviews, rating }
+
+PATCH /user/profile
+  - Description: Update authenticated user's profile
+  - Auth: Required (JWT Token)
+  - Body: { name, bio, avatar, phone }
+
+================================================================================
+TUTOR ENDPOINTS
+================================================================================
+
+GET /tutors
+  - Description: Get all tutors
+  - Auth: Not required
+  - Query: ?category=id&page=1&limit=10
+  - Response: List of tutors with profiles
+
+GET /tutors/:id
+  - Description: Get tutor details by ID
+  - Auth: Not required
+  - Params: id (tutor ID)
+  - Response: { id, name, bio, rating, categories, availability }
+
+GET /categories
+  - Description: Get all available categories
+  - Auth: Not required
+  - Response: List of categories
+
+PATCH /tutor/profile
+  - Description: Update tutor profile (TUTOR role only)
+  - Auth: Required (JWT Token)
+  - Role: TUTOR
+  - Body: { bio, hourlyRate, categories, qualifications }
+
+POST /tutor/availability
+  - Description: Create availability slot (TUTOR role only)
+  - Auth: Required (JWT Token)
+  - Role: TUTOR
+  - Body: { dayOfWeek, startTime, endTime }
+
+DELETE /tutor/availability/:id
+  - Description: Delete availability slot (TUTOR role only)
+  - Auth: Required (JWT Token)
+  - Role: TUTOR
+  - Params: id (availability slot ID)
+
+================================================================================
+BOOKING ENDPOINTS
+================================================================================
+
+POST /bookings
+  - Description: Create new booking
+  - Auth: Required (JWT Token)
+  - Body: { tutorId, slotId, date, amount }
+  - Response: { bookingId, status, details }
+
+GET /bookings
+  - Description: Get all bookings
+  - Auth: Not required
+  - Query: ?status=confirmed&tutorId=id&studentId=id
+  - Response: List of bookings
+
+PATCH /bookings/:id/status
+  - Description: Change booking status
+  - Auth: Required (JWT Token)
+  - Params: id (booking ID)
+  - Body: { status } (confirmed, completed, cancelled)
+
+================================================================================
+REVIEW ENDPOINTS
+================================================================================
+
+POST /review
+  - Description: Create review (STUDENT role only)
+  - Auth: Required (JWT Token)
+  - Role: STUDENT
+  - Body: { tutorId, rating, comment }
+  - Response: { reviewId, createdAt }
+
+DELETE /review/:id
+  - Description: Delete review (STUDENT role only)
+  - Auth: Required (JWT Token)
+  - Role: STUDENT
+  - Params: id (review ID)
+
+================================================================================
+ADMIN ENDPOINTS
+================================================================================
+
+GET /admin/analytics
+  - Description: Get platform analytics (ADMIN role only)
+  - Auth: Required (JWT Token)
+  - Role: ADMIN
+  - Response: { totalUsers, totalBookings, revenue, topTutors }
+
+GET /admin/users
+  - Description: Get all users (ADMIN role only)
+  - Auth: Required (JWT Token)
+  - Role: ADMIN
+  - Query: ?role=TUTOR&status=active&page=1
+  - Response: List of users with details
+
+PATCH /admin/users/:id/moderate
+  - Description: Moderate user (ADMIN role only)
+  - Auth: Required (JWT Token)
+  - Role: ADMIN
+  - Params: id (user ID)
+  - Body: { action } (suspend, activate, warn)
+
+POST /admin/categories
+  - Description: Create category (ADMIN role only)
+  - Auth: Required (JWT Token)
+  - Role: ADMIN
+  - Body: { name, description, icon }
+
+PATCH /admin/categories/:id
+  - Description: Update category (ADMIN role only)
+  - Auth: Required (JWT Token)
+  - Role: ADMIN
+  - Params: id (category ID)
+  - Body: { name, description, icon }
+
+DELETE /admin/categories/:id
+  - Description: Delete category (ADMIN role only)
+  - Auth: Required (JWT Token)
+  - Role: ADMIN
+  - Params: id (category ID)
+
+================================================================================
+HEALTH CHECK
+================================================================================
+
+GET /api/health
+  - Description: Server health check
+  - Auth: Not required
+  - Response: { status: "OK", timestamp }
+
+================================================================================
+AUTHENTICATION HEADER
+================================================================================
+
+For protected endpoints, include JWT token in the Authorization header:
+
+Authorization: Bearer YOUR_JWT_TOKEN
+
+================================================================================
+ROLES
+================================================================================
+
+ADMIN   - Platform administrator with full access
+TUTOR   - Tutoring service provider
+STUDENT - Student seeking tutoring services
+
+================================================================================
+ERROR RESPONSE FORMAT
+================================================================================
+
+{
+  "success": false,
+  "message": "Error description",
+  "errorCode": "ERROR_CODE"
+}
+
+================================================================================
+END OF API DOCUMENTATION
+================================================================================
