@@ -4,6 +4,14 @@ Live Site: [https://skillbridge-frontend-sigma.vercel.app](https://skillbridge-f
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Key Features
+
+- **Tutor Discovery:** Browse and filter expert tutors by category and rating.
+- **Booking System:** Seamlessly schedule and manage tutoring sessions.
+- **Dashboard:** Specialized overviews for Admins, Tutors, and Students.
+- **Review System:** Rate and review your learning experience.
+- **User Moderation:** Admin tools for managing users and categories.
+
 ## Getting Started
 
 First, run the development server:
